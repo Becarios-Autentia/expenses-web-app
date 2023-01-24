@@ -8,12 +8,17 @@ import { MatCardModule } from '@angular/material/card'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './home/home.component';
-import { MatInputModule} from '@angular/material/input'
+import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FriendDialog
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,10 @@ import { MatInputModule} from '@angular/material/input'
     MatSlideToggleModule,
     MatCardModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
