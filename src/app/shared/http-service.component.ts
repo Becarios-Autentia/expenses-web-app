@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class HttpService {
+  private baseurl = "http://localhost:3000";
+
+  constructor(private http: HttpClient) { }
+
+  public getFriends(): Observable<any> {
+    return this.http.get(this.baseurl + "/friends", {observe: 'response'});
+  }
+
+  public postFriend(nombre: string): Observable<any> {
+    let body = nombre;
+    return this.http.post(this.baseurl + '/friends', body, {observe: 'response'})
+  }
+}

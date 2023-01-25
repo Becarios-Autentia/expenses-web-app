@@ -14,6 +14,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
 
+import { HttpService } from './shared/http-service.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +33,10 @@ import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ HttpService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
