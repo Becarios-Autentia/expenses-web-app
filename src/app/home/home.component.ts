@@ -1,8 +1,9 @@
 import { HttpService } from './../shared/http-service.component';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { FriendDialog } from './friend-dialog/friend-dialog.component';
 import { Subscription } from 'rxjs';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent {
   friend = "";
   private subscription: Subscription = new Subscription;
 
-  constructor(public dialog: MatDialog, public conex: HttpService) {
+  constructor(public dialog: MatDialog, public conex: HttpService, private snackBar: MatSnackBar) {
   }
 
   openFriendDialog(){
@@ -24,7 +25,6 @@ export class HomeComponent {
 
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result){
-        console.log('The dialog was closed');
         this.friend = result;
         this.postFriend();
       }
@@ -36,7 +36,8 @@ export class HomeComponent {
   postFriend() {
     this.subscription = this.conex.postFriend(this.friend)
     .subscribe(
-      response => {console.log("Friend "+ response.body.name + " added succesfully!")}
+      response => {const snackBar = this.snackBar.open("Friend added succesfully!", '', {duration: 2000}); this.friend = ""},
+      error => {const snackBar = this.snackBar.open("Error! Friend not added", '', {duration: 2000}); this.friend = ""}
     );
   }
 

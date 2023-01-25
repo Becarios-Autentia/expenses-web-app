@@ -1,10 +1,10 @@
 <mat-dialog-content>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" id="name-input">
     <mat-label>Insert a name: </mat-label>
-    <input matInput [(ngModel)]="data">
+    <input  matInput [(ngModel)]="data" >
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirmar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial *ngIf="data">Confirmar</button>
 </mat-dialog-actions>

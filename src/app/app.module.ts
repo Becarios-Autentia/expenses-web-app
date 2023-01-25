@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { HttpService } from './shared/http-service.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatDialogModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [ HttpService ],
   bootstrap: [AppComponent]
