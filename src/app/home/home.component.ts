@@ -4,6 +4,9 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { FriendDialog } from './friend-dialog/friend-dialog.component';
 import { Subscription } from 'rxjs';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { ExpenseDialog } from './expense-dialog/expense-dialog.component';
+
+import { Expense } from '../shared/expense';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +16,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class HomeComponent {
 
   friend = "";
+  expense = {} as Expense;
   private subscription: Subscription = new Subscription;
 
   constructor(public dialog: MatDialog, public conex: HttpService, private snackBar: MatSnackBar) {
@@ -40,5 +44,28 @@ export class HomeComponent {
       error => {const snackBar = this.snackBar.open("Error! Friend not added", '', {duration: 2000}); this.friend = ""}
     );
   }
+
+    openExpenseDialog(){
+      const dialogRef = this.dialog.open(ExpenseDialog,{
+        data: this.expense, autoFocus: true
+      })
+
+      dialogRef.afterClosed().subscribe((result: Expense) => {
+        if (result){
+          this.expense = result;
+          this.postExpense();
+        }
+        else
+          console.log("Aborted!")
+      });
+    }
+
+    postExpense() {
+      this.subscription = this.conex.postExpense(this.expense)
+      .subscribe(
+        response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.friend = ""},
+        error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.friend = ""}
+      );
+    }
 
 }

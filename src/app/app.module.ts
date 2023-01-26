@@ -13,16 +13,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
+import { ExpenseDialog } from './home/expense-dialog/expense-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { HttpService } from './shared/http-service.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TableComponent } from './home/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FriendDialog
+    FriendDialog,
+    ExpenseDialog,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     FormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ HttpService ],
   bootstrap: [AppComponent]

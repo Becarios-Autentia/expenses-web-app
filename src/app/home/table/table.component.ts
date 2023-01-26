@@ -21,7 +21,7 @@ export class TableComponent implements OnInit{
 
   ngOnInit(): void {
     this.subscription = this.conex.getExpenses().subscribe(
-      response => {this.EXPENSES_DATA = response.body; console.log(this.EXPENSES_DATA); this.dataSource.data = this.EXPENSES_DATA}
+      response => {this.EXPENSES_DATA = response.body; this.dataSource.data = this.EXPENSES_DATA}
     )
   }
 

@@ -1,0 +1,25 @@
+<mat-dialog-content>
+  <mat-form-field appearance="fill" id="name-input">
+    <mat-label>Insert a name</mat-label>
+    <input  matInput [(ngModel)]="data.name" required type="text">
+  </mat-form-field>
+  <mat-form-field appearance="fill" id="desc-input">
+    <mat-label>Set a description</mat-label>
+    <input  matInput [(ngModel)]="data.description" required type="text">
+  </mat-form-field>
+  <mat-form-field appearance="fill" id="amount-input">
+    <mat-label>Fix an amount</mat-label>
+    <input  matInput [(ngModel)]="data.amount" required type="number">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" matInput [(ngModel)]="data.date" required="">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial *ngIf="data.amount && data.name && data.description && data.date">Confirm</button>
+</mat-dialog-actions>
