@@ -15,7 +15,6 @@ export class FriendDialog{
 
     @ViewChild('name-input') myform: any;
 
-
     onCancelUserDialog(): void {
       this.myform.resetForm();
       this.dialogRef.close();

@@ -13,8 +13,10 @@ export class ExpenseDialog{
     @Inject(MAT_DIALOG_DATA) public data: Expense,
     private dialogRef: MatDialogRef<ExpenseDialog>) {}
 
+    @ViewChild('expense-form') myform: any;
 
     onCancelUserDialog(): void {
+      this.myform.resetForm();
       this.dialogRef.close();
     }
 

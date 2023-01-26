@@ -63,8 +63,8 @@ export class HomeComponent {
     postExpense() {
       this.subscription = this.conex.postExpense(this.expense)
       .subscribe(
-        response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.friend = ""},
-        error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.friend = ""}
+        response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.expense = {} as Expense},
+        error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.expense = {} as Expense}
       );
     }
 
