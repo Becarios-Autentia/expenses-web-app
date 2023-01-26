@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { FriendDialog } from './home/friend-dialog/friend-dialog.component';
 import { ExpenseDialog } from './home/expense-dialog/expense-dialog.component';
+import { BalanceDialog } from './home/balance-dialog/balance-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -29,7 +30,8 @@ import { TableComponent } from './home/table/table.component';
     HomeComponent,
     FriendDialog,
     ExpenseDialog,
-    TableComponent
+    TableComponent,
+    BalanceDialog
   ],
   imports: [
     BrowserModule,

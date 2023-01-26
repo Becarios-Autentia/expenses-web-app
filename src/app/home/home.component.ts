@@ -1,3 +1,4 @@
+import { Balance } from './../shared/balance';
 import { HttpService } from './../shared/http-service.component';
 import { Component, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
@@ -5,6 +6,7 @@ import { FriendDialog } from './friend-dialog/friend-dialog.component';
 import { Subscription } from 'rxjs';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { ExpenseDialog } from './expense-dialog/expense-dialog.component';
+import { BalanceDialog } from './balance-dialog/balance-dialog.component';
 
 import { Expense } from '../shared/expense';
 
@@ -17,6 +19,8 @@ export class HomeComponent {
 
   friend = "";
   expense = {} as Expense;
+  balance = {} as Balance;
+
   private subscription: Subscription = new Subscription;
 
   constructor(public dialog: MatDialog, public conex: HttpService, private snackBar: MatSnackBar) {
@@ -45,27 +49,33 @@ export class HomeComponent {
     );
   }
 
-    openExpenseDialog(){
-      const dialogRef = this.dialog.open(ExpenseDialog,{
-        data: this.expense, autoFocus: true
-      })
+  openExpenseDialog(){
+    const dialogRef = this.dialog.open(ExpenseDialog,{
+      data: this.expense, autoFocus: true
+    })
 
-      dialogRef.afterClosed().subscribe((result: Expense) => {
-        if (result){
-          this.expense = result;
-          this.postExpense();
-        }
-        else
-          console.log("Aborted!")
-      });
-    }
+    dialogRef.afterClosed().subscribe((result: Expense) => {
+      if (result){
+        this.expense = result;
+        this.postExpense();
+      }
+      else
+        console.log("Aborted!")
+    });
+  }
 
-    postExpense() {
-      this.subscription = this.conex.postExpense(this.expense)
-      .subscribe(
-        response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.expense = {} as Expense},
-        error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.expense = {} as Expense}
-      );
-    }
+  postExpense() {
+    this.subscription = this.conex.postExpense(this.expense)
+    .subscribe(
+      response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.expense = {} as Expense},
+      error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.expense = {} as Expense}
+    );
+  }
+
+  openBalanceDialog(){
+    const dialogRef = this.dialog.open(BalanceDialog, {
+      data: this.balance
+    })
+  }
 
 }

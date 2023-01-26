@@ -30,4 +30,8 @@ export class HttpService {
     let body = gasto;
     return this.http.post(this.baseurl + '/expenses', body, {observe: 'response'});
   }
+
+  public getBalance(): Observable<any>{
+    return this.http.get(this.baseurl + '/balance', {observe: 'response'});
+  }
 }
