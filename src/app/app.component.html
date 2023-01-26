@@ -1,3 +1,22 @@
-<h1 class="title"> - EXPENSES - </h1>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="title"> EXPENSES  </span>
+</mat-toolbar>
 
-<app-home></app-home>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div style="display: flex; flex-direction: column; padding: 10px;">
+      <button mat-raised-button color="accent" (click)="openFriendDialog()" class="sidenav-btn">Add Friend</button> <br>
+      <button mat-raised-button color="accent" (click)="openExpenseDialog()" class="sidenav-btn">Add Expense</button> <br>
+      <button mat-raised-button color="accent" (click)="openBalanceDialog()" class="sidenav-btn">Get Balance</button> <br>
+    </div>
+
+  </mat-drawer>
+
+  <app-table></app-table>
+
+</mat-drawer-container>
+
+
