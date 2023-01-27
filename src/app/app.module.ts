@@ -24,10 +24,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import {MatIconModule} from '@angular/material/icon';
 
-import { HttpService } from './shared/http-service.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ExpensesList } from './expenses-list/expenses-list.component';
+import { FriendHttpService } from './shared/services/friend-http-service.component';
+import { ExpensesHttpService } from './shared/services/expenses-http-service.component';
+import { BalanceHttpService } from './shared/services/balance-http-service.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,7 @@ import { ExpensesList } from './expenses-list/expenses-list.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [ HttpService ],
+  providers: [ FriendHttpService, ExpensesHttpService, BalanceHttpService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

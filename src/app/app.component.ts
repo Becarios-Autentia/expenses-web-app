@@ -1,5 +1,4 @@
 import { Balance } from './shared/balance';
-import { HttpService } from './shared/http-service.component';
 import { Component, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { FriendDialog } from './friend-dialog/friend-dialog.component';
@@ -9,6 +8,8 @@ import { ExpenseDialog } from './expense-dialog/expense-dialog.component';
 import { BalanceDialog } from './balance-dialog/balance-dialog.component';
 
 import { Expense } from './shared/expense';
+import { FriendHttpService } from './shared/services/friend-http-service.component';
+import { ExpensesHttpService } from './shared/services/expenses-http-service.component';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent {
 
   private subscription: Subscription = new Subscription;
 
-  constructor(public dialog: MatDialog, public conex: HttpService, private snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar, private friendConex: FriendHttpService, private expenseConex: ExpensesHttpService) {
   }
 
   openFriendDialog(){
@@ -44,7 +45,7 @@ export class AppComponent {
   }
 
   postFriend() {
-    this.subscription = this.conex.postFriend(this.friend)
+    this.subscription = this.friendConex.postFriend(this.friend)
     .subscribe(
       response => {const snackBar = this.snackBar.open("Friend added succesfully!", '', {duration: 2000}); this.friend = ""},
       error => {const snackBar = this.snackBar.open("Error! Friend not added", '', {duration: 2000}); this.friend = ""}
@@ -67,7 +68,7 @@ export class AppComponent {
   }
 
   postExpense() {
-    this.subscription = this.conex.postExpense(this.expense)
+    this.subscription = this.expenseConex.postExpense(this.expense)
     .subscribe(
       response => {const snackBar = this.snackBar.open("Expense added succesfully!", '', {duration: 2000}); this.expense = {} as Expense},
       error => {const snackBar = this.snackBar.open("Error! Expense not added", '', {duration: 2000}); this.expense = {} as Expense}
