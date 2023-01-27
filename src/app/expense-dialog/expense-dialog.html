@@ -1,7 +1,11 @@
 <mat-dialog-content id="expense-form">
   <mat-form-field appearance="fill" id="name-input">
     <mat-label>Insert a name</mat-label>
-    <input  matInput [(ngModel)]="data.name" required type="text">
+    <mat-select [(ngModel)]="data.name" placeholder="" required>
+        <mat-option *ngFor="let friend of friends" [value]="friend.name">
+          {{friend.name}}
+        </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" id="desc-input">
     <mat-label>Set a description</mat-label>

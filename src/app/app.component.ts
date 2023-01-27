@@ -1,5 +1,5 @@
 import { Balance } from './shared/balance';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { FriendDialog } from './friend-dialog/friend-dialog.component';
 import { Subscription } from 'rxjs';
@@ -16,11 +16,12 @@ import { ExpensesHttpService } from './shared/services/expenses-http-service.com
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'expenses-web-app';
   showFiller = false;
 
   friend = "";
+  friendList = {};
   expense = {} as Expense;
   balance = {} as Balance;
 

@@ -18,6 +18,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule} from '@angular/material/table';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -57,7 +58,8 @@ import { BalanceHttpService } from './shared/services/balance-http-service.compo
     MatSnackBarModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [ FriendHttpService, ExpensesHttpService, BalanceHttpService ],
   bootstrap: [AppComponent]
