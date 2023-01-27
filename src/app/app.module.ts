@@ -26,14 +26,15 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { HttpService } from './shared/http-service.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TableComponent } from './table/table.component';
+
+import { ExpensesList } from './expenses-list/expenses-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FriendDialog,
     ExpenseDialog,
-    TableComponent,
+    ExpensesList,
     BalanceDialog
   ],
   imports: [

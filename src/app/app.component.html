@@ -5,7 +5,7 @@
   <span class="title"> EXPENSES  </span>
 </mat-toolbar>
 
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <div style="display: flex; flex-direction: column; padding: 10px;">
       <button mat-raised-button color="accent" (click)="openFriendDialog()" class="sidenav-btn">Add Friend</button> <br>
@@ -15,7 +15,7 @@
 
   </mat-drawer>
 
-  <app-table></app-table>
+  <app-expenses-list></app-expenses-list>
 
 </mat-drawer-container>
 
