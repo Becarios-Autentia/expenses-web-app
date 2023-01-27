@@ -24,6 +24,6 @@
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial *ngIf="data.amount && data.name && data.description && data.date">Confirm</button>
+  <button mat-raised-button mat-dialog-close tabindex="-1" color="accent">Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary" *ngIf="data.amount && data.name && data.description && data.date">Confirm</button>
 </mat-dialog-actions>
