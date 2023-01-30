@@ -7,7 +7,7 @@ import { Expense } from '../expense';
 @Injectable({
   providedIn: 'root',
 })
-export class BalanceHttpService {
+export class BalanceService {
   private baseurl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}

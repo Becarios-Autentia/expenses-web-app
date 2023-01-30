@@ -28,9 +28,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ExpensesList } from './expenses-list/expenses-list.component';
-import { FriendHttpService } from './shared/services/friend-http-service.component';
-import { ExpensesHttpService } from './shared/services/expenses-http-service.component';
-import { BalanceHttpService } from './shared/services/balance-http-service.component';
+import { FriendService } from './shared/services/friend.service';
+import { ExpensesService } from './shared/services/expenses.service';
+import { BalanceService } from './shared/services/balance.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ import { BalanceHttpService } from './shared/services/balance-http-service.compo
     MatNativeDateModule,
     MatSelectModule
   ],
-  providers: [ FriendHttpService, ExpensesHttpService, BalanceHttpService ],
+  providers: [ FriendService, ExpensesService, BalanceService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

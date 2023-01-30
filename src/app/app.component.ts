@@ -8,8 +8,8 @@ import { ExpenseDialog } from './expense-dialog/expense-dialog.component';
 import { BalanceDialog } from './balance-dialog/balance-dialog.component';
 
 import { Expense } from './shared/expense';
-import { FriendHttpService } from './shared/services/friend-http-service.component';
-import { ExpensesHttpService } from './shared/services/expenses-http-service.component';
+import { FriendService } from './shared/services/friend.service';
+import { ExpensesService } from './shared/services/expenses.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -31,8 +31,8 @@ export class AppComponent {
   constructor(
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private friendConex: FriendHttpService,
-    private expenseConex: ExpensesHttpService
+    private friendConex: FriendService,
+    private expenseConex: ExpensesService
   ) {}
 
   openFriendDialog() {
@@ -50,7 +50,7 @@ export class AppComponent {
   }
 
   postFriend() {
-    this.subscription = this.friendConex.postFriend(this.friend).subscribe({
+    this.subscription = this.friendConex.addFriend(this.friend).subscribe({
       error: (err: HttpErrorResponse) => {
         const snackBar = this.snackBar.open(err.error, '', {
           duration: 2000,

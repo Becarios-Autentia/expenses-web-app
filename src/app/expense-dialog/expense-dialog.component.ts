@@ -2,8 +2,8 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Expense } from 'src/app/shared/expense';
-import { friend } from '../shared/friend';
-import { FriendHttpService } from '../shared/services/friend-http-service.component';
+import { Friend } from '../shared/friend';
+import { FriendService } from '../shared/services/friend.service';
 
 @Component({
   selector: 'expense-dialog',
@@ -18,10 +18,10 @@ export class ExpenseDialog implements OnInit{
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Expense,
     private dialogRef: MatDialogRef<ExpenseDialog>,
-    private friendConex: FriendHttpService) {}
+    private friendConex: FriendService) {}
 
     @ViewChild('expense-form') myform: any;
-    friends: friend[] = [];
+    friends: Friend[] = [];
 
     ngOnInit(): void {
       this.subscription = this.friendConex.getFriends()

@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialo
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Balance } from 'src/app/shared/balance';
-import { BalanceHttpService } from '../shared/services/balance-http-service.component';
+import { BalanceService } from '../shared/services/balance.service';
 
 @Component({
   selector: 'balance-dialog',
@@ -15,7 +15,7 @@ export class BalanceDialog implements OnInit{
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Balance[],
     private dialogRef: MatDialogRef<BalanceDialog>,
-    public conex: BalanceHttpService) {}
+    public conex: BalanceService) {}
 
   private subscription: Subscription = new Subscription;
 

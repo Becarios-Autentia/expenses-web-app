@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Expense } from 'src/app/shared/expense';
-import { ExpensesHttpService } from '../shared/services/expenses-http-service.component';
+import { ExpensesService } from '../shared/services/expenses.service';
 
 @Component({
   selector: 'app-expenses-list',
@@ -17,7 +17,7 @@ export class ExpensesList implements OnInit{
   dataSource = new MatTableDataSource<Expense>();
   private subscription: Subscription = new Subscription;
 
-  constructor(public conex: ExpensesHttpService) {}
+  constructor(public conex: ExpensesService) {}
 
   ngOnInit(): void {
     this.subscription = this.conex.getExpenses().subscribe(

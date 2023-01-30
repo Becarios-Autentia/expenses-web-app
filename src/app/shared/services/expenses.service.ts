@@ -7,20 +7,19 @@ import { Expense } from '../expense';
 @Injectable({
   providedIn: 'root',
 })
-export class FriendHttpService {
+export class ExpensesService {
   private baseurl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
-  public getFriends(): Observable<any> {
-    return this.http.get(this.baseurl + '/friends', { observe: 'response' });
+  public getExpenses(): Observable<any> {
+    return this.http.get(this.baseurl + '/expenses', { observe: 'response' });
   }
 
-  public postFriend(nombre: string): Observable<any> {
-    let body = { name: nombre };
-    return this.http.post(this.baseurl + '/friends', body, {
+  public postExpense(gasto: Expense): Observable<any> {
+    let body = gasto;
+    return this.http.post(this.baseurl + '/expenses', body, {
       observe: 'response',
-      responseType: 'text',
     });
   }
 }
