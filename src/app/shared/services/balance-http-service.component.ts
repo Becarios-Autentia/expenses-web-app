@@ -5,15 +5,14 @@ import { Observable } from 'rxjs';
 import { Expense } from '../expense';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class BalanceHttpService {
-  private baseurl = "http://localhost:3000";
+  private baseurl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  public getBalance(): Observable<any>{
-    return this.http.get(this.baseurl + '/balance', {observe: 'response'});
+  public getBalance(): Observable<any> {
+    return this.http.get(this.baseurl + '/balance', { observe: 'response' });
   }
 }

@@ -5,20 +5,22 @@ import { Observable } from 'rxjs';
 import { Expense } from '../expense';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class FriendHttpService {
-  private baseurl = "http://localhost:3000";
+  private baseurl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public getFriends(): Observable<any> {
-    return this.http.get(this.baseurl + "/friends", {observe: 'response'});
+    return this.http.get(this.baseurl + '/friends', { observe: 'response' });
   }
 
   public postFriend(nombre: string): Observable<any> {
-    let body = nombre;
-    return this.http.post(this.baseurl + '/friends', body, {observe: 'response'});
+    let body = { name: nombre };
+    return this.http.post(this.baseurl + '/friends', body, {
+      observe: 'response',
+      responseType: 'text',
+    });
   }
 }
