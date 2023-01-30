@@ -7,3 +7,7 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
+.mat-cell {
+  height: 80px
+}

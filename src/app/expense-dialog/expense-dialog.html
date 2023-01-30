@@ -1,7 +1,11 @@
 <mat-dialog-content id="expense-form">
   <mat-form-field appearance="fill" id="name-input">
     <mat-label>Insert a name</mat-label>
-    <input  matInput [(ngModel)]="data.name" required type="text">
+    <mat-select [(ngModel)]="data.name" placeholder="" required>
+        <mat-option *ngFor="let friend of friends" [value]="friend.name">
+          {{friend.name}}
+        </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" id="desc-input">
     <mat-label>Set a description</mat-label>
@@ -20,6 +24,6 @@
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial *ngIf="data.amount && data.name && data.description && data.date">Confirm</button>
+  <button mat-raised-button mat-dialog-close tabindex="-1" color="accent">Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary" *ngIf="data.amount && data.name && data.description && data.date">Confirm</button>
 </mat-dialog-actions>

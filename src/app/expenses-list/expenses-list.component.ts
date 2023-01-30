@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { HttpService } from 'src/app/shared/http-service.component';
 import { Expense } from 'src/app/shared/expense';
+import { ExpensesHttpService } from '../shared/services/expenses-http-service.component';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-expenses-list',
+  templateUrl: './expenses-list.component.html',
+  styleUrls: ['./expenses-list.component.css']
 })
-export class TableComponent implements OnInit{
+export class ExpensesList implements OnInit{
 
   EXPENSES_DATA: Expense[] = [];
 
@@ -17,15 +17,13 @@ export class TableComponent implements OnInit{
   dataSource = new MatTableDataSource<Expense>();
   private subscription: Subscription = new Subscription;
 
-  constructor(public conex: HttpService) {}
+  constructor(public conex: ExpensesHttpService) {}
 
   ngOnInit(): void {
     this.subscription = this.conex.getExpenses().subscribe(
       response => {this.EXPENSES_DATA = response.body; this.dataSource.data = this.EXPENSES_DATA}
     )
   }
-
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
