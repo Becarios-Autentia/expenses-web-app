@@ -1,6 +1,7 @@
+import { Friend } from './friend';
+
 export interface Expense {
-  id: number;
-  name: string;
+  friend: Friend;
   description: string;
   amount: number;
   date: Date;
