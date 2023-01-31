@@ -68,7 +68,7 @@ export class AppComponent {
 
   openExpenseDialog() {
     const dialogRef = this.dialog.open(ExpenseDialog, {
-      data: this.expense,
+      data: this.friend,
       autoFocus: true,
     });
 
