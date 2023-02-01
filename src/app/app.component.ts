@@ -76,7 +76,12 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result: ExpenseRequest) => {
       if (result) {
+        //format date to dd/mm/yyyy
         this.expenseReq = result;
+        this.expenseReq.date = new Date(result.date).toLocaleDateString(
+          'en-GB'
+        );
+
         this.postExpense();
       } else console.log('Aborted!');
     });

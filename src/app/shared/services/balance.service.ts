@@ -13,6 +13,8 @@ export class BalanceService {
   constructor(private http: HttpClient) {}
 
   public getBalance(): Observable<any> {
-    return this.http.get(this.baseurl + '/balance', { observe: 'response' });
+    return this.http.get(this.baseurl + '/expenses/balance', {
+      observe: 'response',
+    });
   }
 }
