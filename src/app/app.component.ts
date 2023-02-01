@@ -74,31 +74,35 @@ export class AppComponent {
       autoFocus: true,
     });
 
-    dialogRef.afterClosed().subscribe((result: Expense) => {
+    dialogRef.afterClosed().subscribe((result: ExpenseRequest) => {
       if (result) {
-        this.expense = result;
+        this.expenseReq = result;
         this.postExpense();
       } else console.log('Aborted!');
     });
   }
 
   postExpense() {
-    this.subscription = this.expenseConex.postExpense(this.expense).subscribe(
-      (response) => {
-        const snackBar = this.snackBar.open('Expense added succesfully!', '', {
-          duration: 2000,
-        });
-        this.expense = {} as Expense;
-        this.expenseReq = {} as ExpenseRequest;
-      },
-      (error) => {
-        const snackBar = this.snackBar.open('Error! Expense not added', '', {
-          duration: 2000,
-        });
-        this.expense = {} as Expense;
-        this.expenseReq = {} as ExpenseRequest;
-      }
-    );
+    this.subscription = this.expenseConex
+      .postExpense(this.expenseReq)
+      .subscribe(
+        (response) => {
+          const snackBar = this.snackBar.open(
+            'Expense added succesfully!',
+            '',
+            {
+              duration: 2000,
+            }
+          );
+          this.expenseReq = {} as ExpenseRequest;
+        },
+        (error) => {
+          const snackBar = this.snackBar.open('Error! Expense not added', '', {
+            duration: 2000,
+          });
+          this.expenseReq = {} as ExpenseRequest;
+        }
+      );
   }
 
   openBalanceDialog() {

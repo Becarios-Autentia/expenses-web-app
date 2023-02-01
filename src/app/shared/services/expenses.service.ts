@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Expense } from '../expense';
+import { ExpenseRequest } from '../expense-request';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,8 @@ export class ExpensesService {
     return this.http.get(this.baseurl + '/expenses', { observe: 'response' });
   }
 
-  public postExpense(gasto: Expense): Observable<any> {
-    let body = gasto;
+  public postExpense(expense: ExpenseRequest): Observable<any> {
+    let body = expense;
     return this.http.post(this.baseurl + '/expenses', body, {
       observe: 'response',
     });
