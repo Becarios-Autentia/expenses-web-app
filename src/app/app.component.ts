@@ -64,7 +64,7 @@ export class AppComponent {
           duration: 2000,
         });
         this.friend = '';
-      },
+      }
     });
   }
 
@@ -76,11 +76,8 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result: ExpenseRequest) => {
       if (result) {
-        //format date to dd/mm/yyyy
         this.expenseReq = result;
-        this.expenseReq.date = new Date(result.date).toLocaleDateString(
-          'en-GB'
-        );
+        this.expenseReq.date = new Date(result.date).toLocaleDateString('en-GB');
 
         this.postExpense();
       } else console.log('Aborted!');
@@ -90,24 +87,23 @@ export class AppComponent {
   postExpense() {
     this.subscription = this.expenseConex
       .postExpense(this.expenseReq)
-      .subscribe(
-        (response) => {
-          const snackBar = this.snackBar.open(
-            'Expense added succesfully!',
-            '',
-            {
-              duration: 2000,
-            }
-          );
-          this.expenseReq = {} as ExpenseRequest;
-        },
-        (error) => {
-          const snackBar = this.snackBar.open('Error! Expense not added', '', {
+      .subscribe({
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+          const snackBar = this.snackBar.open(err.error, '', {
             duration: 2000,
           });
           this.expenseReq = {} as ExpenseRequest;
-        }
-      );
+        },
+        next: (res: HttpResponse<any>) => {
+          console.log(res);
+          const snackBar = this.snackBar.open(res.body, '', {
+            duration: 2000,
+          });
+          this.expenseReq = {} as ExpenseRequest;
+        },
+        complete: () => {console.log("Complete")}
+      });
   }
 
   openBalanceDialog() {

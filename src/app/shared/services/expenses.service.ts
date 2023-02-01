@@ -21,6 +21,7 @@ export class ExpensesService {
     let body = expense;
     return this.http.post(this.baseurl + '/expenses', body, {
       observe: 'response',
+      responseType: 'text',
     });
   }
 }

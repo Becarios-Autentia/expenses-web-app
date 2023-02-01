@@ -16,13 +16,16 @@ export class ExpensesList implements OnInit {
   dataSource = new MatTableDataSource<Expense>();
   private subscription: Subscription = new Subscription();
 
-  constructor(public conex: ExpensesService) {}
+  constructor(public conex: ExpensesService) {
+    this.dataSource.filterPredicate = (data: Expense, filter: string) => {
+      return data.friend.name.toLocaleLowerCase().includes(filter);
+    }
+  }
 
   ngOnInit(): void {
     this.subscription = this.conex.getExpenses().subscribe((response) => {
       this.EXPENSES_DATA = response.body;
       this.dataSource.data = this.EXPENSES_DATA;
-      console.log(this.EXPENSES_DATA);
     });
   }
 
