@@ -11,6 +11,7 @@ import { Expense } from './shared/expense';
 import { FriendService } from './shared/services/friend.service';
 import { ExpensesService } from './shared/services/expenses.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { ExpenseRequest } from './shared/expense-request';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent {
   showFiller = false;
 
   friend = '';
+  expenseReq = {} as ExpenseRequest;
   friendList = {};
   expense = {} as Expense;
   balance = {} as Balance;
@@ -68,7 +70,7 @@ export class AppComponent {
 
   openExpenseDialog() {
     const dialogRef = this.dialog.open(ExpenseDialog, {
-      data: this.friend,
+      data: this.expenseReq,
       autoFocus: true,
     });
 
@@ -87,12 +89,14 @@ export class AppComponent {
           duration: 2000,
         });
         this.expense = {} as Expense;
+        this.expenseReq = {} as ExpenseRequest;
       },
       (error) => {
         const snackBar = this.snackBar.open('Error! Expense not added', '', {
           duration: 2000,
         });
         this.expense = {} as Expense;
+        this.expenseReq = {} as ExpenseRequest;
       }
     );
   }
