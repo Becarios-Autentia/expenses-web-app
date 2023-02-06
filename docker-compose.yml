@@ -1,0 +1,12 @@
+version: '3'
+services:
+    server:
+        image: becarios-autentia/expenses-web-app-image
+        ports:
+            - "8080:80"
+        tty: true
+        expose:
+            - "8080"
+        stdin_open: true
+        environment:
+            - MODE=dev
